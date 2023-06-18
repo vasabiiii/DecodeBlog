@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/28a84e064b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style/all.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs')%>
+    <div class="container">
+        <div class="main">
+            <form  action="/api/editt" method="POST" class="formm"  >
+                <h3>Редактирование</h3>
+                <fieldset class="fieldset">
+                    <input type="hidden" value="<%=user._id%>" name="id">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" value="<%=user.full_name%>" placeholder="Введите новое имя" name="full_name">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" value="<%=user.nick%>" placeholder="Введите никнейм" name="nick">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" value="<%=user.imagep%>" placeholder="Ссылка на вашу картинку" name="imagep">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="email" value="<%=user.email%>" placeholder="Новый email" name="email">
+                </fieldset>
+               
+                <fieldset>
+                    <button type="submit" class="formm_button">Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

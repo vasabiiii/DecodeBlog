@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs')%>
+    <title>Decode Blog</title>
+</head>
+<body>
+
+    <%- include('partials/header.ejs')%>
+
+    <div class="container">
+        <div class="main">
+            <div class="categories">
+                <p class="categories_p">Категории</p>
+
+                <% genres.forEach(genre => {%>
+                    <a class="categories_a" href="?genre=<%=genre.key%>"><%=genre.name%></a>
+                <%})%>
+            
+            </div>
+
+            
+            <div class="main-conteiner">
+                <div class="main-card">
+                    <p class="main-card_p1">Блоги по играм</p>
+                    <p class="main-card_p2">Популярные и лучшие публикации по играм для начинающих и профессиональных игроков, а также для разработчикам игр</p>
+
+                    <% 
+                        blogs.forEach(item =>{
+                    %>
+
+                        <div class="blogs">
+                            <div class="blog">
+                                <a href="/detail/<%=item._id%>"><img class="blogs_img" width="850" height="450"  src="<%=item.image%>" alt=""></a>  
+                                <p class="blogs_p1"><%=item.mainname%></p>
+                                <p class="blogs_p2"><%=item.secname%></p>
+                                <p class="blogs_p3"><%=item.textabout%></p>
+                                <div class="blog_icons">
+                                    
+                                    <% 
+                                        if(user.toWatch && user.toWatch.includes(item._id)){  
+                                    %>
+                                        <button onclick="deleteFromToWatch('<%=item._id%>')" class="blog_icon blog_liked"><i class="fa-solid fa-heart"></i> Понравилось</button>
+                                    <%
+                                        }else{ 
+                                    %>
+                                        <button onclick="saveToWatch('<%=item._id%>')" class="blog_icon blog_like"><i class="fa-regular fa-heart"></i> Понравилось</button>    
+                                    <%
+                                        }
+                                    %>
+                                    <span class="blog_icon"><i class="fa-solid fa-eye"></i> <%=item.genre.name%> </span>
+                                    <span class="blog_icon"><i class="fa-solid fa-comment"></i> 4</span>
+                                    <span class="blog_icon blog_comm"><i class="fa-solid fa-comments"></i> Обсуждения</span>
+                                    
+                                    
+                                    <span class="blog_icon"><i class="fa-solid fa-user"></i> <%=item.author.nick%></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    <% 
+                        }) 
+                    %>
+                    
+                    <div class="pages">
+                        <%
+                            for(let i = 0; i< pages; i++){
+
+                        %>
+                                <a class="page_num" href="?page=<%=i%>"><%=i + 1%></a>
+                        <%        
+                            }
+                        %>
+                    </div>
+
+
+                </div>
+        </div>
+    </div>
+    
+    <%- include('partials/script.ejs')%>
+       
+   
+
+</body>
+</html>

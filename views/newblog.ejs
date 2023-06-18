@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/28a84e064b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style/all.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/header.ejs')%>
+    <div class="container">
+        <div class="main">
+            <form  class="formm" action="/api/new" method="POST" >
+                <h3>Новый блог</h3>
+                <fieldset class="fieldset">
+                    <input type="text" placeholder="Введите заголовок блога" name="mainname">
+                </fieldset>
+                <fieldset class="fieldset">
+                   <select name="genre" id="" aria-placeholder="Выберите категорию" name="genre">
+                    <% 
+                        genres.forEach(genre=>{
+
+                    %>  
+                    <option value="<%=genre._id%>"><%= genre.name%></option>  
+                    <%  
+                        })
+                    %>   
+                   </select>
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" placeholder="Изображение" name="image">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" placeholder="Вступление" name="secname">
+                </fieldset>
+                <fieldset class="fieldset">
+                    <input type="text" placeholder="Содержание блога" name="textabout">
+                </fieldset>
+                <button type="submit" class="formm_button">Создать блог</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<header class="mainheader">
+    <a href="http://localhost:3000/" class="header_name">Decode Blog</a>
+    <form class="head_search">
+        <input class="search_form" name="search" type="text" placeholder="Поиск по блогам">
+        <button class="head_shbutton">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <p>Найти</p>
+        </button>
+    </form>
+    <% 
+        if(user._id && user.isAdmin){
+        
+    %>
+        <a href="http://localhost:3000/myadmin/<%=user._id%>" class="vhod_button">Профиль</a>
+    <% 
+        }else if(user._id && !user.isAdmin){
+    %>
+    <a href="http://localhost:3000/myprofile/<%=user._id%>" class="vhod_button">Профиль</a>
+   
+    <% 
+        }else{
+    %>
+        <a href="http://localhost:3000/reg" class="regist_vhod">Регистрация</a>
+        <a href="http://localhost:3000/login" class="vhod_button">Вход</a>
+    <% 
+        }
+    %>
+
+
+
+    
+</header>

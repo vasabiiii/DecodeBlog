@@ -1,0 +1,86 @@
+.comment{
+    margin: 20px 0;
+    border: 1px solid rgba(0, 0, 0, 0.062);
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    
+}
+.comment a{
+    text-decoration: none;
+    color: rgb(0, 188, 245);
+    margin-top: 40px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+.comment p{
+    margin: 15px 0;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.comment_photo{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-right: 5%;
+    object-fit: cover;
+}
+.coment{
+    display: flex;
+    flex-direction: row;
+}
+.comment_delete{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    border: none;
+    font-size: 20px;
+    background-color: rgba(255, 240, 240, 0);
+    color: black;
+    transition: 0.3s;
+}
+.comment_delete:hover{
+    color: crimson;
+}
+.comment_edit{
+    position: absolute;
+    top: 10%;
+    right: 8%;
+    border: none;
+    font-size: 20px;
+    background-color: rgba(255, 240, 240, 0);
+    color: black;
+    transition: 0.3s;
+}
+.comment_edit:hover{
+    color: rgb(20, 180, 212);
+}
+
+.com_modalwin{
+    display: none;
+    position: absolute;
+    top: 35%;
+    right: 5%;
+
+}
+.com_modalwin button{
+    margin-top: 5%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.115);
+    background-color: rgb(0, 162, 255);
+    padding: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    transition: 0.3s;
+}
+.com_modalwin button:hover{
+    background-color: rgb(7, 152, 200);
+}
+.com_modalwin input{
+    padding: 2%;
+    width: 100%;
+}
+.com_modalwin.activeed{
+    display: flex;
+}

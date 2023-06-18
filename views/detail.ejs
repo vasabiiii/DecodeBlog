@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.ejs')%>
+    <title>Decode Blog</title>
+</head>
+<body>
+
+    <%- include('partials/header.ejs')%>
+
+    <div class="container">
+        <div class="main">
+
+    <div class="categories">
+        <p class="categories_p">Категории</p>
+        <% genres.forEach(genre => {%>
+            <a class="categories_a" href="/"><%=genre.name%></a>
+        <%})%>
+    </div>
+
+    <div class="main-conteiner">
+        <div class="main-card">
+                <div class="blogs_detail" >
+                    <div class="blog">
+                        <div><img class="blogs_img" width="850" height="450"  src="<%=blogs.image%>" alt=""></div> 
+                        <p class="blogs_p1"><%=blogs.mainname%></p>
+                        <p class="blogs_p2"><%=blogs.secname%></p>
+                        <p class="blogs_p3"><%=blogs.textabout%></p>
+                        <div class="blog_icons">
+                            
+                            <% 
+                                if(user.toWatch && user.toWatch.includes(blogs._id)){  
+                            %>
+                                <button onclick="deleteFromToWatch('<%=blogs._id%>')" class="blog_icon blog_liked"><i class="fa-solid fa-heart"></i> Понравилось</button>
+                            <%
+                                }else{ 
+                            %>
+                                <button onclick="saveToWatch('<%=blogs._id%>')" class="blog_icon blog_like"><i class="fa-regular fa-heart"></i> Понравилось</button>    
+                            <%
+                                }
+                            %>
+                            <span class="blog_icon"><i class="fa-solid fa-eye"></i> <%=blogs.genre.name%> </span>
+                            <span class="blog_icon"><i class="fa-solid fa-comment"></i></span>
+                            <span  class="blog_icon blog_comm"><i class="fa-solid fa-comments"></i> Обсуждения</span>
+
+                            
+                            
+                            <span class="blog_icon"><i class="fa-solid fa-user"></i> <%=blogs.author.nick%></span>
+                        </div>
+                        <div class="comments">
+                            <% if(user && user._id){ %>
+                                <div >
+                                    <h3>Комментарии</h3>
+                                    <form onSubmit="sendRate(event)" class="add-comment-form">
+                                        <textarea id="comment-text"></textarea>
+                                        <input type="hidden" value="<%=user._id%>" id="comment_author">
+                                        <input type="hidden" value="<%=blogs._id%>" id="comment_blog">
+                                        <button type="submit">Отправить</button>
+                                    </form>
+                                </div>
+                            <% 
+                                }else{ 
+                            %>
+                                <div>
+                                        <p>
+                                            <a href="/login">Войдите</a>
+                                            или
+                                            <a href="/reg">зарегистрируйтесь</a>
+                                            чтобы оставить комментарий
+                                        </p>
+                                </div>
+                            <%
+                                }
+                            %> 
+
+                            <%
+                                if(rates){
+                                    rates.forEach(rate =>{
+
+                                    
+                            %>
+                                <div class="comment">
+                                    <%
+                                        if(rate.authorId.full_name == user.full_name){
+                                    %>
+                                    <button onclick="deleteCom('<%=rate._id%>')" class="comment_delete"><i class="fa-solid fa-trash"></i></button>
+                                    <button onclick="editCom(this)" class="comment_edit"><i class="fa-solid fa-pencil"></i></button>
+                                            <div class="com_modalwin">
+                                                <form action="/api/editcom" method="post" >
+                                                    <fieldset>
+                                                        <input type="hidden" value="<%=rate._id%>" name="id">
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <input type="text" value="<%=rate.text%>" name="text">
+                                                    </fieldset>
+                                                    <button type="submit" class="">Изменить</button>
+                                                </form>
+                                            </div>
+                                    
+                                    <%
+                                        }
+                                    %>
+                                    <div class="coment">
+                                        <img class="comment_photo" src="<%=rate.authorId.imagep%>" alt="">
+                                        <a href=""><%=rate.authorId.full_name%></a>
+                                    </div>
+                                    <p>Comment:   <%=rate.text%></p>
+                                </div>
+                            <%   
+                                    })    
+                                }
+                            %>
+                        </div>   
+                    </div>
+                </div>
+
+            </div>
+        </div>   
+            
+            
+    
+    <%- include('partials/script.ejs')%>
+       
+   
+
+</body>
+</html>
